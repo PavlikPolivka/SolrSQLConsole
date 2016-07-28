@@ -1,6 +1,6 @@
 {
   "name": "solr-sql",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Solr SQL: Web SQL Console for Apache Solr",
   "author": "",
   "license": "MIT",
@@ -48,8 +48,12 @@
     "flux": "^2.1.1",
     "gulp-eslint": "^1.1.1",
     "object-assign": "^4.0.1",
-    "react": "^0.13.3",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
     "react-ace": "3.5.0",
-    "react-json-inspector": "7.0.0"
+    "react-json-inspector": "7.0.0",
+    "react-json-tree": "0.10.0",
+    "react-tap-event-plugin": "^1.0.0",
+    "material-ui": "^0.15.0"
   }
 }

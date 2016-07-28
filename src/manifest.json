@@ -1,12 +1,17 @@
 {
-  "name": "Hello World!",
-  "description": "My first Chrome App.",
-  "version": "0.1",
+  "name": "SOLR SQL Console",
+  "description": "Web SQL Console for Apache Solr.",
+  "version": "1.0.1",
   "manifest_version": 2,
   "app": {
     "background": {
-      "scripts": ["chromereload.js", "background.js"]
+      "scripts": ["background.js"]
     }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "permissions": [
     "http://*/",

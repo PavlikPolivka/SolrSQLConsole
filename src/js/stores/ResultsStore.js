@@ -38,10 +38,18 @@ const ResultsStore = assign({}, BaseStore, {
       _loading = true;
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
-        _loading = false;
+        if (xhr.readyState == 4) {
+          _loading = false;
+        }
+
         if (xhr.readyState == 4 && xhr.status == 200) {
           _result = JSON.parse(xhr.responseText);
-        } else {
+          _error = "";
+        }
+        else if (xhr.readyState == 4 && xhr.status == 0) {
+          _error = "Solr server not accessible.";
+        }
+        else {
           _error = xhr.statusText;
         }
         ResultsStore.emitChange();

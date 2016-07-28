@@ -3,11 +3,15 @@ import Constants from '../Constants';
 import BaseStore from './BaseStore';
 import assign from 'object-assign';
 
+
 var _data = {};
 
 // add private functions to modify data
 function setToLocalStorage(key, value) {
   _data[key] = value;
+  var obj= {};
+  obj[key] = value;
+  chrome.storage.local.set(obj);
 }
 
 function getFromLocalStorage(key, defaultValue) {
@@ -33,6 +37,12 @@ const SettingsStore = assign({}, BaseStore, {
     const action = payload.action;
 
     switch (action.type) {
+    case Constants.ActionTypes.INIT:
+      chrome.storage.local.get(null, function (result) {
+        _data = result;
+        SettingsStore.emitChange();
+      });
+      break;
     case Constants.ActionTypes.SETTINGS_CHANGED:
       setToLocalStorage("serverUrl", action.server);
       setToLocalStorage("collectionName", action.collection);

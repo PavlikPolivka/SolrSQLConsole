@@ -2,12 +2,17 @@ import Dispatcher from '../Dispatcher';
 import Constants from '../Constants';
 import BaseStore from './BaseStore';
 import assign from 'object-assign';
+import SettingsStore from './SettingsStore';
+
 
 var _data = {};
 
 // add private functions to modify data
 function setToLocalStorage(key, value) {
   _data[key] = value;
+  var obj= {};
+  obj[key] = value;
+  chrome.storage.local.set(obj);
 }
 
 function getFromLocalStorage(key, defaultValue) {
@@ -30,13 +35,18 @@ const QueryStore = assign({}, BaseStore, {
     const action = payload.action;
 
     switch (action.type) {
-    case Constants.ActionTypes.QUERY_CHANGED:
-      const query = action.query.trim();
-      if (query !== '') {
-        setToLocalStorage("editorQuery",query);
-        QueryStore.emitChange();
-      }
-      break;
+      case Constants.ActionTypes.INIT_QUERY:
+        Dispatcher.waitFor([SettingsStore.dispatcherIndex]);
+        chrome.storage.local.get(null, function (result) {
+          _data = result;
+          QueryStore.emitChange();
+        });
+        break;
+      case Constants.ActionTypes.QUERY_CHANGED:
+        const query = action.query;
+          setToLocalStorage("editorQuery",query);
+          QueryStore.emitChange();
+        break;
 
     // add more cases for other actionTypes...
 

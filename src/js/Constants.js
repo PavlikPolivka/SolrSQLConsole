@@ -1,4 +1,4 @@
-import keyMirror from 'react/lib/keyMirror';
+import keyMirror from 'fbjs/lib/keyMirror';
 
 export default {
   // event name triggered from store, listened to by views
@@ -9,6 +9,9 @@ export default {
     TASK_ADDED: null,
     SETTINGS_CHANGED: null,
     QUERY_EXECUTED: null,
+    LOCAL_STORAGE_CHANGED: null,
+    INIT: null,
+    INIT_QUERY: null,
     QUERY_CHANGED: null
   }),
 

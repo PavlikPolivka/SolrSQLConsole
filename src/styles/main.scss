@@ -1,16 +1,31 @@
 @import "./normalize.css";
-@import "./json-inspector.css";
+@import "./simplegrid.css";
 
-$primary-color: green;
-
-h1 {
-  color: $primary-color;
+#Query_Editor {
+  height: 100vh !important;
 }
 
-li.task {
-  list-style-type: none;
+#error {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: xx-large;
+  color: darkred;
+}
 
-  label {
-    padding: 0 10px;
-  }
+#info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: xx-large;
+  color: darkgray;
+}
+
+#loading {
+  position: relative;
+  left: 37vh;
+  top: 10vh;
+}
+
+#ResultList {
+  height: 93vh;
+  overflow: auto;
 }

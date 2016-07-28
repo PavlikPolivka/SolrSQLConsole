@@ -5,6 +5,8 @@ import 'brace/theme/github';
 import QueryActionsCreators from '../actions/QueryActionsCreators';
 import ResultActionCreators from '../actions/ResultActionsCreators';
 import QueryStore from '../stores/QueryStore';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
 
 function stateChange() {
   return {
@@ -12,12 +14,24 @@ function stateChange() {
   };
 }
 
+const style = {
+  position: 'absolute',
+  top: '90vh',
+  left: '28vw',
+  zIndex: '20',
+};
+
 export default React.createClass({
   getInitialState() {
     return stateChange();
   },
 
+  _onChange() {
+    this.setState(stateChange());
+  },
+
   componentDidMount() {
+    QueryStore.addChangeListener(this._onChange);
   },
 
   editorChange(newQuery) {
@@ -39,8 +53,12 @@ export default React.createClass({
           name="Query_Editor"
           editorProps={{$blockScrolling: true}}
           value={query}
+          width="33vw"
+          heigth="100vh"
         />
-        <button onClick={this.executeQuery}>Execute</button>
+        <FloatingActionButton style={style} onClick={this.executeQuery}>
+          <PlayArrow />
+        </FloatingActionButton>
       </div>
     );
   }

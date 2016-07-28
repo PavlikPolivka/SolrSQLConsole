@@ -9,5 +9,10 @@ export default {
       type: Constants.ActionTypes.QUERY_CHANGED,
       query
     });
+  },
+  initQuery() {
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.INIT_QUERY
+    });
   }
 };

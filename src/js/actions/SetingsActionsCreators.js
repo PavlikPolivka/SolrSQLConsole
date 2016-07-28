@@ -10,5 +10,10 @@ export default {
       server,
       collection
     });
+  },
+  init() {
+    Dispatcher.handleViewAction({
+      type: Constants.ActionTypes.INIT
+    });
   }
 };
